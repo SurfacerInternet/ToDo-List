@@ -1,0 +1,38 @@
+import React, { useState } from "react";
+import { TodoForm } from "./TodoForm";
+import {v4 as uuidv4} from 'uuid';
+import { Todo } from "./ToDo";
+uuidv4();
+
+
+export const TodoWrapper = () => {
+
+    const [todos, setTodos] = useState([])
+
+    const addTodo = todo => {
+        setTodos([...todos, {id: uuidv4(), task: todo, 
+            completed: false, isEditing:false}])
+
+    console.log(todos)
+        }
+    
+        return (
+    <div className="TodoWrapper">
+    <TodoForm addTodo={addTodo}/>
+
+        {
+        todos.map((todo, index) => (
+            <Todo task={todo} key={index}  
+            />
+        ))}
+        
+    </div>
+)
+
+
+}
+
+//These are list of todos. 
+//How do you pass values from the todo from to the todo wrapper? props
+//So im trying to make a form: I have the a) the form witht the input
+//                                         b) the list of inputs, make them an array, set empty array with useState, add items(todos ) to the array 
